@@ -28,3 +28,39 @@ def cadastrar_produto(nome,categoria, quantidade, preco):
 
     cursor.close()
     conexao.close()
+
+
+
+def listar_produtos():
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+
+    cursor.execute("SELECT id,nome, categoria, quantidade, preco FROM produtos")
+    produtos = cursor.fetchall()
+
+
+    cursor.close()
+    conexao.close()
+
+    return produtos
+
+
+def excluir_produto(id_produto):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("DELETE FROM produtos WHERE id = %s", (id_produto,))
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
+
+
+
+
+
+
+
+
+
